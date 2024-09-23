@@ -29,6 +29,13 @@
             margin-bottom: 20px;
         }
 
+        .dynamic-text {
+            font-size: 1.5em;
+            color: #007bff;
+            height: 40px;
+            overflow: hidden;
+        }
+
         .cursor {
             display: inline-block;
             width: 1px;
@@ -83,6 +90,10 @@
         <h1 class="typewriter-text">
             <span id="typewriter"></span><span class="cursor"></span>
         </h1>
+        <div class="dynamic-text">
+            <!-- Dynamic text will go here -->
+            <span id="dynamic"></span><span class="cursor"></span>
+        </div>
 
         <!-- Blog Content Section -->
         <div class="content-list">
@@ -100,20 +111,46 @@
     </footer>
 
     <script>
-        const text = "Welcome to Abhinav's Blog"; // Text to type
+        const mainText = "Welcome to Abhinav's Blog"; // The main text to type
+        const words = ["Programming Tips", "Interview Questions", "Tech Articles", "Latest Trends", "AI & Machine Learning"]; // Words to type after main text
         const speed = 100; // Typing speed in milliseconds
-        let i = 0;
+        let i = 0; // Counter for the main text
+        let j = 0; // Counter for the dynamic words
+        let wordIndex = 0; // Index for the dynamic words
 
-        function typeWriter() {
+        function typeWriterText(text, elementId, callback) {
             if (i < text.length) {
-                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                document.getElementById(elementId).innerHTML += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, speed); // Recursively call the function until the text is complete
+                setTimeout(() => typeWriterText(text, elementId, callback), speed);
+            } else {
+                i = 0; // Reset counter
+                setTimeout(callback, 1000); // Call the callback (dynamic words typing) after a delay
             }
         }
 
-        // Start the typewriter effect when the page loads
-        window.onload = typeWriter;
+        function typeWriterDynamicWords() {
+            if (j < words[wordIndex].length) {
+                document.getElementById("dynamic").innerHTML += words[wordIndex].charAt(j);
+                j++;
+                setTimeout(typeWriterDynamicWords, speed);
+            } else {
+                j = 0; // Reset counter for dynamic words
+                wordIndex = (wordIndex + 1) % words.length; // Move to the next word
+                setTimeout(() => {
+                    document.getElementById("dynamic").innerHTML = ""; // Clear the word
+                    typeWriterDynamicWords(); // Repeat the dynamic word typing
+                }, 2000); // Wait for 2 seconds before typing the next word
+            }
+        }
+
+        function startTypewriter() {
+            // Start typing the main text, then transition to typing the dynamic words
+            typeWriterText(mainText, "typewriter", typeWriterDynamicWords);
+        }
+
+        // Start the whole typewriter effect when the page loads
+        window.onload = startTypewriter;
     </script>
 </body>
 </html>
