@@ -148,8 +148,11 @@
         }
 
         function startTypewriter() {
-            // Start typing the main text, then transition to typing the dynamic words
-            typeWriterText(mainText, "typewriter", typeWriterDynamicWords);
+            // Continuously type and retype the main text, then move to dynamic words
+            typeWriterText(mainText, "typewriter", () => {
+                // After main text is done, loop through dynamic words
+                typeWriterDynamicWords();
+            });
         }
 
         // Start the whole typewriter effect when the page loads
