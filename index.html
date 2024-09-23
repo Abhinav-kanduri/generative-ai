@@ -20,20 +20,28 @@
 
         .container {
             text-align: center;
-            margin-top: 50px;
         }
 
-        h1 {
+        .typewriter-text {
             font-size: 3em;
-            margin-bottom: 10px;
             color: #333;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
-        .dynamic-text {
-            font-size: 1.5em;
-            color: #007bff;
-            height: 40px;
-            overflow: hidden;
+        .cursor {
+            display: inline-block;
+            width: 1px;
+            background-color: #333;
+            animation: blink 0.7s steps(1) infinite;
+            height: 1.2em;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
         }
 
         .content-list {
@@ -72,10 +80,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Abhinav's Blog</h1>
-        <div class="dynamic-text">
-            <!-- The text will dynamically change here -->
-        </div>
+        <h1 class="typewriter-text">
+            <span id="typewriter"></span><span class="cursor"></span>
+        </h1>
 
         <!-- Blog Content Section -->
         <div class="content-list">
@@ -93,21 +100,20 @@
     </footer>
 
     <script>
-        // Array of words to display
-        const words = ["Programming Tips", "Interview Questions", "Tech Articles", "Latest Trends", "AI & Machine Learning"];
-        let currentIndex = 0;
-        const dynamicText = document.querySelector('.dynamic-text');
+        const text = "Welcome to Abhinav's Blog"; // Text to type
+        const speed = 100; // Typing speed in milliseconds
+        let i = 0;
 
-        function changeWord() {
-            dynamicText.innerHTML = words[currentIndex];
-            currentIndex = (currentIndex + 1) % words.length; // Cycle through the words
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typewriter").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed); // Recursively call the function until the text is complete
+            }
         }
 
-        // Change the word every 2 seconds
-        setInterval(changeWord, 2000);
-
-        // Initially display the first word
-        changeWord();
+        // Start the typewriter effect when the page loads
+        window.onload = typeWriter;
     </script>
 </body>
 </html>
