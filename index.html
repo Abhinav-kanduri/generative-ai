@@ -24,9 +24,11 @@
             background-color: rgba(0, 0, 0, 0.6);
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
         }
 
-        .typewriter-text, .dynamic-text {
+        /* Main welcome text styling (in center) */
+        .typewriter-text {
             background-color: #2d2d2d;
             color: #00ff00;
             font-family: "Courier New", Courier, monospace;
@@ -36,9 +38,18 @@
             margin-bottom: 20px;
         }
 
-        .dynamic-text {
+        /* Dynamic text styling for the top-right corner */
+        .dynamic-text-corner {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #2d2d2d;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+            padding: 10px;
+            border-radius: 5px;
             font-size: 1.2em;
-            margin-top: 20px;
+            display: inline-block;
         }
 
         .cursor {
@@ -56,6 +67,7 @@
             }
         }
 
+        /* Layout for sections */
         section {
             margin-top: 50px;
         }
@@ -96,20 +108,11 @@
             text-decoration: underline;
         }
 
-        /* Layout for content sections */
+        /* Styling for the content sections */
         .content-section {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
-        }
-
-        /* Styling for the content boxes */
-        .content-box {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
     </style>
@@ -120,9 +123,6 @@
         <h1 class="typewriter-text">
             <span id="typewriter"></span><span class="cursor"></span>
         </h1>
-        <div class="dynamic-text">
-            <span id="dynamic"></span><span class="cursor"></span>
-        </div>
 
         <!-- About Section -->
         <section class="content-section" id="about">
@@ -159,6 +159,11 @@
                 <li><a href="#">Stand Out with Your Machine Learning Resume</a></li>
             </ul>
         </section>
+    </div>
+
+    <!-- Dynamic text in top-right corner -->
+    <div class="dynamic-text-corner">
+        <span id="dynamic"></span><span class="cursor"></span>
     </div>
 
     <footer>
@@ -201,7 +206,7 @@
                 setTimeout(() => {
                     document.getElementById("dynamic").innerHTML = ""; // Clear the word after typing
                     typeWriterDynamicWords(); // Start typing the next word
-                }, 100); // Wait 2 seconds before typing the next word
+                }, 2000); // Wait 2 seconds before typing the next word
             }
         }
 
