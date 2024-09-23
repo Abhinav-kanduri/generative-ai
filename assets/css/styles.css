@@ -44,3 +44,44 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+
+/* Existing styles... */
+
+/* Add the styles for the scrolling messages */
+.scrolling-messages {
+    margin-top: 50px;
+    height: 150px; /* Adjust the height as needed */
+    overflow: hidden;
+    position: relative;
+}
+
+.scrolling-messages p {
+    position: absolute;
+    width: 100%;
+    font-size: 1.1em;
+    color: #00ff00;
+    font-family: "Courier New", Courier, monospace;
+    animation: slideIn 10s linear infinite;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    10% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    90% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}

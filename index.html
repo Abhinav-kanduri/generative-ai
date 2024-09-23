@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Existing head content -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Abhinav's Blog</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
     <!-- Include Font Awesome for Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
@@ -74,8 +74,8 @@
         }
 
         .icon-box {
-            width: 80px;
-            height: 50px;
+            width: 85px;
+            height: 65px;
             background-color: rgba(0, 0, 0, 0.6);
             border-radius: 15px;
             display: flex;
@@ -92,7 +92,7 @@
         }
 
         .icon-box i {
-            font-size: 1em; /* Reduced icon size from 3em to 2em */
+            font-size: 2em; /* Reduced icon size */
             color: #00aaff;
         }
 
@@ -100,7 +100,7 @@
             position: absolute;
             bottom: 10px;
             color: #fff;
-            font-size: 0.9em; /* Adjusted font size for the label */
+            font-size: 0.9em;
             font-weight: bold;
             text-shadow: 0 0 5px #000;
         }
@@ -133,6 +133,45 @@
             color: inherit;
             text-decoration: none;
         }
+
+        /* Styles for the scrolling messages */
+        .scrolling-messages {
+            margin-top: 50px;
+            height: 150px; /* Adjust the height as needed */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scrolling-messages p {
+            position: absolute;
+            width: 100%;
+            font-size: 1.1em;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+            animation: slideIn 10s linear infinite;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            10% {
+                transform: translateY(0%);
+                opacity: 1;
+            }
+            90% {
+                transform: translateY(0%);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -173,6 +212,11 @@
                 </div>
             </a>
         </div>
+
+        <!-- Scrolling Messages Section -->
+        <div class="scrolling-messages">
+            <p id="message"></p>
+        </div>
     </div>
 
     <!-- Dynamic text in top-right corner -->
@@ -185,6 +229,7 @@
     </footer>
 
     <script>
+        // Existing JavaScript code...
         const mainText = "Welcome to Abhinav's Blog";
         const words = ["Programming Tips", "Interview Questions", "Tech Articles", "Latest Trends", "AI & Machine Learning"];
         const speed = 100;
@@ -224,13 +269,39 @@
             }
         }
 
-        // Start both typewriter effects
-        function startTypewriters() {
-            typeWriterMainText();
-            typeWriterDynamicWords();
+        // Messages for scrolling effect
+        const messages = [
+            // Your 10 points
+            "Unlock the Power of Data Science and Generative AI: Step into the future with cutting-edge Data Science techniques and Generative AI models. Master the art of transforming raw data into actionable insights and deploy Large Language Models (LLMs) like GPT and BERT to solve real-world problems. Join our hands-on projects and courses tailored for aspiring data scientists.",
+            "Build Your Career with LLMs and AI Innovation: Learn how Large Language Models (LLMs) and Generative AI are reshaping industries. From Neural Networks to Machine Learning Pipelines, acquire the skills needed to excel in AI-driven solutions. Perfect for students looking to work on real-world AI projects and future-proof their careers!",
+            "Hands-On Projects in Machine Learning and AI: Don’t just study theory—get hands-on with Machine Learning, AI, and Generative AI techniques. Work on real-world datasets, build ML models, and dive deep into Natural Language Processing (NLP). Enroll now to accelerate your journey in Data Science!",
+            "Be Part of the AI Revolution with Generative AI: Join the revolution in Generative AI and Data Science! Whether it’s building LLMs, working on Transformer models, or mastering Deep Learning, our courses and projects are designed to make you industry-ready. Become an expert in AI-powered solutions and NLP tasks!",
+            "Generative AI Projects Designed for You: Gain practical experience in Generative AI and LLMs with our student-friendly projects. Build applications using BERT, GPT, and more, while learning from industry experts. Perfect for students looking to create a strong portfolio in AI and Data Science.",
+            "Learn Data Science with Real-World Impact: From predictive analytics to Generative AI applications, our Data Science courses cover it all. Explore key technologies like AI, Deep Learning, and LLMs, and work on real-world projects that will help you stand out. Get ready to shape the future of AI and Machine Learning.",
+            "Transform Your Career with Data Science and AI: Looking to start your career in Data Science or AI? Our courses offer a blend of theory and practical projects. Gain hands-on experience in ML models, Neural Networks, and Generative AI like LLMs. Reach out today to elevate your skills and future-proof your career.",
+            "Take Your AI and Machine Learning Skills to the Next Level: Advance your career with comprehensive courses in Data Science and Generative AI. Learn how to build and deploy LLMs, tackle real-world challenges, and master the most in-demand skills in Machine Learning. Projects, certifications, and hands-on experience await you!",
+            "The Future is AI – Be a Part of It: Join the next generation of AI experts! Learn to develop and deploy Generative AI models, optimize Machine Learning workflows, and harness the power of Big Data. Whether you're a beginner or advanced, we have the courses and projects to get you there.",
+            "Become a Leader in Generative AI and Data Science: Ready to lead in AI and Data Science? Dive into Generative AI, Large Language Models, and Deep Learning techniques with our curated courses and industry-ready projects. Connect with us and transform your passion into expertise."
+        ];
+
+        let messageIndex = 0;
+
+        function displayMessage() {
+            const messageElement = document.getElementById('message');
+            messageElement.innerHTML = messages[messageIndex];
+
+            // Update the index for the next message
+            messageIndex = (messageIndex + 1) % messages.length;
         }
 
-        window.onload = startTypewriters;
+        // Start both typewriter effects and scrolling messages when the page loads
+        window.onload = function() {
+            startTypewriters();
+            displayMessage();
+
+            // Change message every 10 seconds to match the animation duration
+            setInterval(displayMessage, 10000);
+        };
     </script>
 </body>
 </html>
