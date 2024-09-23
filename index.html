@@ -3,30 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contents - Abhinav's Blog</title>
+    <title>Welcome to Abhinav's Blog</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .dynamic-text {
+            font-size: 1.5em;
+            color: #007bff;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .content-list {
+            margin-top: 50px;
+        }
+
+        .content-list h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .content-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-list ul li {
+            margin: 10px 0;
+        }
+
+        .content-list ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        footer {
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    <header>
+    <div class="container">
         <h1>Welcome to Abhinav's Blog</h1>
-        <nav>
+        <div class="dynamic-text">
+            <!-- The text will dynamically change here -->
+        </div>
+
+        <!-- Blog Content Section -->
+        <div class="content-list">
+            <h2>Recent Posts</h2>
             <ul>
-                <li><a href="index.html">Contents</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="posts/first-post.html">First Blog Post</a></li>
+                <li><a href="posts/second-post.html">Second Blog Post</a></li>
+                <!-- Add more posts here -->
             </ul>
-        </nav>
-    </header>
-    
-    <main>
-        <h2>Blog Contents</h2>
-        <ul>
-            <li><a href="posts/first-post.html">First Blog Post</a></li>
-            <li><a href="posts/second-post.html">Second Blog Post</a></li>
-        </ul>
-    </main>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2024 Abhinav Kanduri</p>
     </footer>
+
+    <script>
+        // Array of words to display
+        const words = ["Programming Tips", "Interview Questions", "Tech Articles", "Latest Trends", "AI & Machine Learning"];
+        let currentIndex = 0;
+        const dynamicText = document.querySelector('.dynamic-text');
+
+        function changeWord() {
+            dynamicText.innerHTML = words[currentIndex];
+            currentIndex = (currentIndex + 1) % words.length; // Cycle through the words
+        }
+
+        // Change the word every 2 seconds
+        setInterval(changeWord, 2000);
+
+        // Initially display the first word
+        changeWord();
+    </script>
 </body>
 </html>
