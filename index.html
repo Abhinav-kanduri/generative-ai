@@ -88,8 +88,11 @@
             transition: box-shadow 0.5s ease-in-out;
         }
 
-        /* Glow effect when hovering over the content section */
-        #bookmarks:hover {
+        /* Glow effect when hovering over any section */
+        #about:hover,
+        #content:hover,
+        #bookmarks:hover,
+        #resume:hover {
             box-shadow: 0 0 20px 10px rgba(0, 255, 255, 0.7);
         }
 
@@ -160,7 +163,7 @@
             </ul>
         </section>
 
-        <!-- Bookmarked Links Section with Glow Effect on Hover -->
+        <!-- Bookmarked Links Section -->
         <section class="content-section" id="bookmarks">
             <h2>Bookmarked Links</h2>
             <ul>
@@ -226,7 +229,7 @@
                 setTimeout(() => {
                     document.getElementById("dynamic").innerHTML = ""; // Clear the word after typing
                     typeWriterDynamicWords(); // Start typing the next word
-                }, 30); // Wait 2 seconds before typing the next word
+                }, 2000); // Wait 2 seconds before typing the next word
             }
         }
 
