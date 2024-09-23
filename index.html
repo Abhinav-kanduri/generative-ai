@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Existing head content -->
+    <!-- Meta Tags and Title -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Abhinav's Blog</title>
     <!-- Include Font Awesome for Icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Internal CSS Styles -->
     <style>
         /* Basic reset */
         * {
@@ -74,8 +75,8 @@
         }
 
         .icon-box {
-            width: 85px;
-            height: 65px;
+            width: 120px;
+            height: 120px;
             background-color: rgba(0, 0, 0, 0.6);
             border-radius: 15px;
             display: flex;
@@ -92,7 +93,7 @@
         }
 
         .icon-box i {
-            font-size: 2em; /* Reduced icon size */
+            font-size: 2em; /* Adjusted icon size */
             color: #00aaff;
         }
 
@@ -140,6 +141,8 @@
             height: 150px; /* Adjust the height as needed */
             overflow: hidden;
             position: relative;
+            padding: 0 20px;
+            box-sizing: border-box;
         }
 
         .scrolling-messages p {
@@ -149,7 +152,6 @@
             color: #00ff00;
             font-family: "Courier New", Courier, monospace;
             animation: slideIn 10s linear infinite;
-            padding: 0 20px;
             box-sizing: border-box;
         }
 
@@ -172,6 +174,33 @@
             }
         }
 
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .icons-container {
+                gap: 20px;
+            }
+
+            .icon-box {
+                width: 100px;
+                height: 100px;
+            }
+
+            .icon-box i {
+                font-size: 1.5em;
+            }
+
+            .icon-label {
+                font-size: 0.8em;
+            }
+
+            .scrolling-messages {
+                height: 120px;
+            }
+
+            .scrolling-messages p {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -228,8 +257,9 @@
         <p>&copy; 2024 Abhinav Kanduri</p>
     </footer>
 
+    <!-- JavaScript Code -->
     <script>
-        // Existing JavaScript code...
+        // Typewriter effect for the main text
         const mainText = "Welcome to Abhinav's Blog";
         const words = ["Programming Tips", "Interview Questions", "Tech Articles", "Latest Trends", "AI & Machine Learning"];
         const speed = 100;
@@ -238,7 +268,6 @@
         let wordIndex = 0;
         let j = 0;
 
-        // Typewriter effect for the main text
         function typeWriterMainText() {
             if (i < mainText.length) {
                 document.getElementById("typewriter").innerHTML += mainText.charAt(i);
@@ -253,7 +282,6 @@
             }
         }
 
-        // Typewriter effect for the dynamic words
         function typeWriterDynamicWords() {
             if (j < words[wordIndex].length) {
                 document.getElementById("dynamic").innerHTML += words[wordIndex].charAt(j);
@@ -271,7 +299,6 @@
 
         // Messages for scrolling effect
         const messages = [
-            // Your 10 points
             "Unlock the Power of Data Science and Generative AI: Step into the future with cutting-edge Data Science techniques and Generative AI models. Master the art of transforming raw data into actionable insights and deploy Large Language Models (LLMs) like GPT and BERT to solve real-world problems. Join our hands-on projects and courses tailored for aspiring data scientists.",
             "Build Your Career with LLMs and AI Innovation: Learn how Large Language Models (LLMs) and Generative AI are reshaping industries. From Neural Networks to Machine Learning Pipelines, acquire the skills needed to excel in AI-driven solutions. Perfect for students looking to work on real-world AI projects and future-proof their careers!",
             "Hands-On Projects in Machine Learning and AI: Don’t just study theory—get hands-on with Machine Learning, AI, and Generative AI techniques. Work on real-world datasets, build ML models, and dive deep into Natural Language Processing (NLP). Enroll now to accelerate your journey in Data Science!",
@@ -290,13 +317,19 @@
             const messageElement = document.getElementById('message');
             messageElement.innerHTML = messages[messageIndex];
 
+            // Reset animation
+            messageElement.style.animation = 'none';
+            void messageElement.offsetWidth; // Trigger reflow to restart animation
+            messageElement.style.animation = 'slideIn 10s linear infinite';
+
             // Update the index for the next message
             messageIndex = (messageIndex + 1) % messages.length;
         }
 
-        // Start both typewriter effects and scrolling messages when the page loads
+        // Start all functions when the page loads
         window.onload = function() {
-            startTypewriters();
+            typeWriterMainText();
+            typeWriterDynamicWords();
             displayMessage();
 
             // Change message every 10 seconds to match the animation duration
