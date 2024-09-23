@@ -6,6 +6,20 @@
     <title>Welcome to Abhinav's Blog</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Full page flexbox layout to keep footer at the bottom */
+        html, body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -18,6 +32,7 @@
         }
 
         .container {
+            flex: 1; /* Take up available space, pushing the footer down */
             max-width: 1200px;
             margin: 50px auto;
             padding: 20px;
@@ -70,6 +85,12 @@
         /* Layout for sections */
         section {
             margin-top: 50px;
+            transition: box-shadow 0.5s ease-in-out;
+        }
+
+        /* Glow effect when hovering over the content section */
+        #bookmarks:hover {
+            box-shadow: 0 0 20px 10px rgba(0, 255, 255, 0.7);
         }
 
         h2 {
@@ -81,12 +102,12 @@
 
         footer {
             text-align: center;
-            position: fixed;
-            bottom: 10px;
-            width: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             color: #fff;
             padding: 10px;
+            width: 100%;
+            position: sticky; /* Sticks the footer at the bottom */
+            bottom: 0;
         }
 
         ul {
@@ -114,7 +135,6 @@
             padding: 20px;
             border-radius: 10px;
         }
-
     </style>
 </head>
 <body>
@@ -140,7 +160,7 @@
             </ul>
         </section>
 
-        <!-- Bookmarked Links Section -->
+        <!-- Bookmarked Links Section with Glow Effect on Hover -->
         <section class="content-section" id="bookmarks">
             <h2>Bookmarked Links</h2>
             <ul>
@@ -206,7 +226,7 @@
                 setTimeout(() => {
                     document.getElementById("dynamic").innerHTML = ""; // Clear the word after typing
                     typeWriterDynamicWords(); // Start typing the next word
-                }, 2000); // Wait 2 seconds before typing the next word
+                }, 30); // Wait 2 seconds before typing the next word
             }
         }
 
