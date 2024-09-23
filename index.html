@@ -114,24 +114,27 @@
         const mainText = "Welcome to Abhinav's Blog"; // The main text to type
         const words = ["Programming Tips", "Interview Questions", "Tech Articles", "Latest Trends", "AI & Machine Learning"]; // Words to type after main text
         const speed = 100; // Typing speed in milliseconds
-        let i = 0; // Counter for the main text
-        let j = 0; // Counter for the dynamic words
-        let wordIndex = 0; // Index for the dynamic words
 
-        function typeWriterText(text, elementId, callback) {
-            if (i < text.length) {
-                document.getElementById(elementId).innerHTML += text.charAt(i);
+        let i = 0; // Counter for the main text
+        let wordIndex = 0; // Index for the dynamic words
+        let j = 0; // Counter for the dynamic words
+
+        // Typewriter effect for the main text
+        function typeWriterMainText() {
+            if (i < mainText.length) {
+                document.getElementById("typewriter").innerHTML += mainText.charAt(i);
                 i++;
-                setTimeout(() => typeWriterText(text, elementId, callback), speed);
+                setTimeout(typeWriterMainText, speed);
             } else {
-                i = 0; // Reset counter
+                i = 0; // Reset counter for main text
                 setTimeout(() => {
-                    document.getElementById(elementId).innerHTML = ""; // Clear the main text
-                    typeWriterText(mainText, "typewriter", callback); // Restart the main text typing
-                }, 2000); // Wait for 2 seconds before repeating
+                    document.getElementById("typewriter").innerHTML = ""; // Clear the text after typing
+                    typeWriterMainText(); // Repeat typing
+                }, 2000); // Wait 2 seconds before repeating
             }
         }
 
+        // Typewriter effect for the dynamic words
         function typeWriterDynamicWords() {
             if (j < words[wordIndex].length) {
                 document.getElementById("dynamic").innerHTML += words[wordIndex].charAt(j);
@@ -141,22 +144,20 @@
                 j = 0; // Reset counter for dynamic words
                 wordIndex = (wordIndex + 1) % words.length; // Move to the next word
                 setTimeout(() => {
-                    document.getElementById("dynamic").innerHTML = ""; // Clear the word
-                    typeWriterDynamicWords(); // Repeat the dynamic word typing
-                }, 2000); // Wait for 2 seconds before typing the next word
+                    document.getElementById("dynamic").innerHTML = ""; // Clear the word after typing
+                    typeWriterDynamicWords(); // Start typing the next word
+                }, 2000); // Wait 2 seconds before typing the next word
             }
         }
 
-        function startTypewriter() {
-            // Continuously type and retype the main text, then move to dynamic words
-            typeWriterText(mainText, "typewriter", () => {
-                // After main text is done, loop through dynamic words
-                typeWriterDynamicWords();
-            });
+        // Start both typewriter effects simultaneously
+        function startTypewriters() {
+            typeWriterMainText();
+            typeWriterDynamicWords();
         }
 
-        // Start the whole typewriter effect when the page loads
-        window.onload = startTypewriter;
+        // Start the typewriter effects when the page loads
+        window.onload = startTypewriters;
     </script>
 </body>
 </html>
