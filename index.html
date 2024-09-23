@@ -125,7 +125,10 @@
                 setTimeout(() => typeWriterText(text, elementId, callback), speed);
             } else {
                 i = 0; // Reset counter
-                setTimeout(callback, 110); // Call the callback (dynamic words typing) after a delay
+                setTimeout(() => {
+                    document.getElementById(elementId).innerHTML = ""; // Clear the main text
+                    typeWriterText(mainText, "typewriter", callback); // Restart the main text typing
+                }, 2000); // Wait for 2 seconds before repeating
             }
         }
 
