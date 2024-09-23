@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Abhinav's Blog</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Include Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         /* Basic reset */
         * {
@@ -22,8 +24,6 @@
 
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-image: url('assets/images/ai-poster.png');
             background-size: cover;
             background-position: center;
@@ -32,17 +32,14 @@
         }
 
         .container {
-            flex: 1; /* Take up available space, pushing the footer down */
+            flex: 1;
             max-width: 1200px;
             margin: 50px auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             text-align: center;
         }
 
-        /* Main welcome text styling (in center) */
+        /* Main welcome text styling */
         .typewriter-text {
             background-color: #2d2d2d;
             color: #00ff00;
@@ -50,21 +47,7 @@
             padding: 10px;
             border-radius: 5px;
             display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        /* Dynamic text styling for the top-right corner */
-        .dynamic-text-corner {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            background-color: #2d2d2d;
-            color: #00ff00;
-            font-family: "Courier New", Courier, monospace;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 1.2em;
-            display: inline-block;
+            margin-bottom: 50px;
         }
 
         .cursor {
@@ -82,25 +65,58 @@
             }
         }
 
-        /* Layout for sections */
-        section {
-            margin-top: 50px;
-            transition: box-shadow 0.5s ease-in-out;
+        /* Icons container */
+        .icons-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
         }
 
-        /* Glow effect when hovering over any section */
-        #about:hover,
-        #content:hover,
-        #bookmarks:hover,
-        #resume:hover {
+        .icon-box {
+            width: 150px;
+            height: 150px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .icon-box:hover {
+            transform: translateY(-10px);
             box-shadow: 0 0 20px 10px rgba(0, 255, 255, 0.7);
         }
 
-        h2 {
+        .icon-box i {
+            font-size: 3em;
             color: #00aaff;
-            border-bottom: 2px solid #00aaff;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+        }
+
+        .icon-label {
+            position: absolute;
+            bottom: 10px;
+            color: #fff;
+            font-size: 1em;
+            font-weight: bold;
+            text-shadow: 0 0 5px #000;
+        }
+
+        /* Dynamic text in top-right corner */
+        .dynamic-text-corner {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            background-color: #2d2d2d;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            display: inline-block;
         }
 
         footer {
@@ -109,79 +125,54 @@
             color: #fff;
             padding: 10px;
             width: 100%;
-            position: sticky; /* Sticks the footer at the bottom */
+            position: sticky;
             bottom: 0;
         }
 
-        ul {
-            list-style-type: square;
-            margin: 0;
-            padding: 0;
-        }
-
-        ul li {
-            margin: 10px 0;
-        }
-
         a {
-            color: #00ff00;
+            color: inherit;
             text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Styling for the content sections */
-        .content-section {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Welcome Section with Typewriter Effect in Code Block Style -->
+        <!-- Welcome Section with Typewriter Effect -->
         <h1 class="typewriter-text">
             <span id="typewriter"></span><span class="cursor"></span>
         </h1>
 
-        <!-- About Section -->
-        <section class="content-section" id="about">
-            <h2>About Me</h2>
-            <p>Hello, I'm Abhinav Kanduri. This blog is where I share my passion for technology, especially around AI, machine learning, coding, and career advice. Follow along for insightful content!</p>
-        </section>
-
-        <!-- Content Section -->
-        <section class="content-section" id="content">
-            <h2>Content</h2>
-            <ul>
-                <li><a href="#">Programming Tips and Tricks</a></li>
-                <li><a href="#">Latest in Machine Learning</a></li>
-                <li><a href="#">Tech Industry Trends</a></li>
-            </ul>
-        </section>
-
-        <!-- Bookmarked Links Section -->
-        <section class="content-section" id="bookmarks">
-            <h2>Bookmarked Links</h2>
-            <ul>
-                <li><a href="#">GitHub Repository: AI Projects</a></li>
-                <li><a href="#">Resources on Generative AI</a></li>
-                <li><a href="#">Top Coding Platforms for Practice</a></li>
-            </ul>
-        </section>
-
-        <!-- Sample Resume Building Section -->
-        <section class="content-section" id="resume">
-            <h2>Sample Resume Building Sessions</h2>
-            <ul>
-                <li><a href="#">Resume Tips for AI Enthusiasts</a></li>
-                <li><a href="#">How to Structure a Tech Resume</a></li>
-                <li><a href="#">Stand Out with Your Machine Learning Resume</a></li>
-            </ul>
-        </section>
+        <!-- Icons Section -->
+        <div class="icons-container">
+            <!-- About Icon -->
+            <a href="about.html">
+                <div class="icon-box">
+                    <i class="fas fa-user"></i>
+                    <span class="icon-label">About</span>
+                </div>
+            </a>
+            <!-- Content Icon -->
+            <a href="content.html">
+                <div class="icon-box">
+                    <i class="fas fa-book-open"></i>
+                    <span class="icon-label">Content</span>
+                </div>
+            </a>
+            <!-- Bookmarks Icon -->
+            <a href="bookmarks.html">
+                <div class="icon-box">
+                    <i class="fas fa-bookmark"></i>
+                    <span class="icon-label">Bookmarks</span>
+                </div>
+            </a>
+            <!-- Resume Icon -->
+            <a href="resume.html">
+                <div class="icon-box">
+                    <i class="fas fa-file-alt"></i>
+                    <span class="icon-label">Resume</span>
+                </div>
+            </a>
+        </div>
     </div>
 
     <!-- Dynamic text in top-right corner -->
@@ -194,13 +185,13 @@
     </footer>
 
     <script>
-        const mainText = "Welcome to Abhinav's Blog"; // The main text to type
-        const words = ["Programming Tips", "Interview Questions", "Tech Articles", "Latest Trends", "AI & Machine Learning"]; // Words to type after main text
-        const speed = 100; // Typing speed in milliseconds
+        const mainText = "Welcome to Abhinav's Blog";
+        const words = ["Programming Tips", "Interview Questions", "Tech Articles", "Latest Trends", "AI & Machine Learning"];
+        const speed = 100;
 
-        let i = 0; // Counter for the main text
-        let wordIndex = 0; // Index for the dynamic words
-        let j = 0; // Counter for the dynamic words
+        let i = 0;
+        let wordIndex = 0;
+        let j = 0;
 
         // Typewriter effect for the main text
         function typeWriterMainText() {
@@ -209,11 +200,11 @@
                 i++;
                 setTimeout(typeWriterMainText, speed);
             } else {
-                i = 0; // Reset counter for main text
                 setTimeout(() => {
-                    document.getElementById("typewriter").innerHTML = ""; // Clear the text after typing
-                    typeWriterMainText(); // Repeat typing
-                }, 2000); // Wait 2 seconds before repeating
+                    document.getElementById("typewriter").innerHTML = "";
+                    i = 0;
+                    typeWriterMainText();
+                }, 2000);
             }
         }
 
@@ -224,22 +215,21 @@
                 j++;
                 setTimeout(typeWriterDynamicWords, speed);
             } else {
-                j = 0; // Reset counter for dynamic words
-                wordIndex = (wordIndex + 1) % words.length; // Move to the next word
                 setTimeout(() => {
-                    document.getElementById("dynamic").innerHTML = ""; // Clear the word after typing
-                    typeWriterDynamicWords(); // Start typing the next word
-                }, 2000); // Wait 2 seconds before typing the next word
+                    document.getElementById("dynamic").innerHTML = "";
+                    j = 0;
+                    wordIndex = (wordIndex + 1) % words.length;
+                    typeWriterDynamicWords();
+                }, 2000);
             }
         }
 
-        // Start both typewriter effects simultaneously
+        // Start both typewriter effects
         function startTypewriters() {
             typeWriterMainText();
             typeWriterDynamicWords();
         }
 
-        // Start the typewriter effects when the page loads
         window.onload = startTypewriters;
     </script>
 </body>
