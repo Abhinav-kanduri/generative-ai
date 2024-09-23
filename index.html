@@ -75,8 +75,8 @@
         }
 
         .icon-box {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 60px;
             background-color: rgba(0, 0, 0, 0.6);
             border-radius: 15px;
             display: flex;
@@ -320,7 +320,7 @@
             // Reset animation
             messageElement.style.animation = 'none';
             void messageElement.offsetWidth; // Trigger reflow to restart animation
-            messageElement.style.animation = 'slideIn 10s linear infinite';
+            messageElement.style.animation = 'slideIn 6s linear infinite';
 
             // Update the index for the next message
             messageIndex = (messageIndex + 1) % messages.length;
