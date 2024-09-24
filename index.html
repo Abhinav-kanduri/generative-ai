@@ -75,8 +75,8 @@
         }
 
         .icon-box {
-            width: 100px;
-            height: 60px;
+            width: 120px;
+            height: 120px;
             background-color: rgba(0, 0, 0, 0.6);
             border-radius: 15px;
             display: flex;
@@ -85,6 +85,7 @@
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
             cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow effect */
         }
 
         .icon-box:hover {
@@ -93,7 +94,7 @@
         }
 
         .icon-box i {
-            font-size: 2em; /* Adjusted icon size */
+            font-size: 2em;
             color: #00aaff;
         }
 
@@ -126,8 +127,6 @@
             color: #fff;
             padding: 10px;
             width: 100%;
-            position: sticky;
-            bottom: 0;
         }
 
         a {
@@ -138,24 +137,29 @@
         /* Styles for the scrolling messages */
         .scrolling-messages {
             margin: 50px auto 0 auto;
-            width: 150%;
-            height: 200px;
+            width: 80%;
+            height: 150px;
             overflow: hidden;
             position: relative;
             padding: 20px;
             box-sizing: border-box;
             background-color: black;
             border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Shadow effect */
         }
 
         .scrolling-messages p {
-            position: absolute;
+            /* position: absolute; */ /* Removed absolute positioning */
             width: 100%;
-            font-size: 1em;
+            font-size: 1.1em;
             color: #00ff00;
             font-family: "Courier New", Courier, monospace;
             animation: slideIn 10s linear infinite;
             box-sizing: border-box;
+            text-align: center; /* Center text horizontally */
         }
 
         @keyframes slideIn {
@@ -177,7 +181,34 @@
             }
         }
 
-        /* Responsive adjustments */
+        /* Styles for the bottom scroller */
+        .bottom-scroller {
+            width: 100%;
+            overflow: hidden;
+            background-color: #2d2d2d;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .scroller-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: scrollLeft 20s linear infinite;
+            font-size: 1.1em;
+            color: #00ff00;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        @keyframes scrollLeft {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Responsive design adjustments */
         @media (max-width: 768px) {
             .icons-container {
                 gap: 20px;
@@ -197,7 +228,9 @@
             }
 
             .scrolling-messages {
-                height: 120px;
+                width: 95%;
+                padding: 15px;
+                height: auto; /* Let height adjust based on content */
             }
 
             .scrolling-messages p {
@@ -254,6 +287,13 @@
     <!-- Dynamic text in top-right corner -->
     <div class="dynamic-text-corner">
         <span id="dynamic"></span><span class="cursor"></span>
+    </div>
+
+    <!-- Scrolling Words at the Bottom -->
+    <div class="bottom-scroller">
+        <div class="scroller-content">
+            LLM &nbsp; • &nbsp; AI &nbsp; • &nbsp; Generative AI &nbsp; • &nbsp; Machine Learning &nbsp; • &nbsp; Data Science &nbsp; • &nbsp; Deep Learning &nbsp; • &nbsp; NLP &nbsp; • &nbsp; Neural Networks &nbsp; • &nbsp; Big Data &nbsp; • &nbsp; Innovation &nbsp; • &nbsp; LLM &nbsp; • &nbsp; AI &nbsp; • &nbsp; Generative AI &nbsp; • &nbsp; Machine Learning &nbsp; • &nbsp; Data Science &nbsp; • &nbsp; Deep Learning &nbsp; • &nbsp; NLP &nbsp; • &nbsp; Neural Networks &nbsp; • &nbsp; Big Data &nbsp; • &nbsp; Innovation
+        </div>
     </div>
 
     <footer>
@@ -323,7 +363,7 @@
             // Reset animation
             messageElement.style.animation = 'none';
             void messageElement.offsetWidth; // Trigger reflow to restart animation
-            messageElement.style.animation = 'slideIn 6s linear infinite';
+            messageElement.style.animation = 'slideIn 10s linear infinite';
 
             // Update the index for the next message
             messageIndex = (messageIndex + 1) % messages.length;
